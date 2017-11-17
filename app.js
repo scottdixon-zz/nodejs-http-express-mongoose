@@ -1,19 +1,16 @@
-const http = require('http')
+const express = require('express')
+const app = express()
 const port = 3000
 
-let students = ['Scott', 'Simon']
+let students = ['Scott', 'Simon'];
 
-function handleRequest(request, response) {
+app.get('/students', function (req, res) {
+  res.send(students)
+})
 
-  if (request.url === '/students') {
-    response.writeHead(200, {
-      'Content-Type': 'application/json'
-    })
-    response.end(JSON.stringify(students))
-  }
+app.use(function(req, res){
+  console.log('404')
+  res.sendStatus(404);
+})
 
-}
-
-const server = http.createServer(handleRequest)
-
-server.listen(port)
+app.listen(port)
