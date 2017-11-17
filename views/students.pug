@@ -1,0 +1,12 @@
+html
+  head
+    title Hello
+  body
+    ul
+      each student in students
+        li= student
+
+    form(action='/students', method='post')
+      p Add a new student!
+      input(name='student')
+      input(type='submit')

@@ -5,16 +5,18 @@ const port = 3000
 
 let students = ['Scott', 'Simon'];
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
+
+app.set('view engine', 'pug')
 
 app.get('/students', function (req, res) {
-  res.send(students)
+  res.render('students', { students: students })
 })
 
 app.post('/students', function (req, res) {
-  let student = req.body.name;
+  let student = req.body.student;
   students.push(student);
-  res.send(student);
+  res.redirect('/students');
 })
 
 app.use(function(req, res){
