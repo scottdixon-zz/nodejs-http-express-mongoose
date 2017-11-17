@@ -1,0 +1,12 @@
+html
+  head
+    title Cities
+  body
+    ul
+      each city in cities
+        li= city.name
+
+    form(action='/cities', method='post')
+      p Add a new city!
+      input(name='city')
+      input(type='submit')

@@ -4,9 +4,14 @@ html
   body
     ul
       each student in students
-        li= student.name
+        li #{student.name} (#{student.city ? student.city.name : 'NA'})
 
     form(action='/students', method='post')
       p Add a new student!
       input(name='student')
+      p Their city:
+      select(name='city')
+        each city in cities
+         option(value=city._id)= city.name
+
       input(type='submit')
